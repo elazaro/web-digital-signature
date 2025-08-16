@@ -16,7 +16,11 @@ import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class DigitalSigner {
+   private static final Logger log = LoggerFactory.getLogger("com.mxrisc");
 
    private final PrivateKey privateKey;
    private final X509Certificate certificate;
@@ -41,6 +45,7 @@ public class DigitalSigner {
    }
 
    public byte[] signDetached(byte[] data) throws Exception {
+      log.info("Enter signDetached");
       CMSTypedData msg = new CMSProcessableByteArray(data);
       
       CMSSignedDataGenerator gen = new CMSSignedDataGenerator();
@@ -58,14 +63,17 @@ public class DigitalSigner {
       // TODO: false means "detached", what's that?
       CMSSignedData signedData = gen.generate(msg, false);
 
+      log.info("Exit signDetached");
       return signedData.getEncoded();
    }
 
    public String signToBase64(String data) throws Exception {
+      log.info("Enter signToBase64");
       // TODO: This uses UTF-8, what is something like ISO-8859-1 should we
       // detect this from the environment or marshall unmarshall before signing
       // to warraty compatibility
       byte[] signed = signDetached(data.getBytes(StandardCharsets.UTF_8));
+      log.info("Exit signToBase64");
       return Base64.toBase64String(signed);
    }
 
