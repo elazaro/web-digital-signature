@@ -6,7 +6,6 @@ import com.mxrisc.auth_api.service.SignService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-
 @RestController
 @RequestMapping("/sign")
 public class SignController {

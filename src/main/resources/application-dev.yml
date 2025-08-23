@@ -19,3 +19,7 @@ signer:
     path: "keystore/signature-key.p12"
     password: password
     alias: java-signer-mxrisc 
+pki:
+  ca:
+    snhandler:
+      registrypath: "keystore/serials.json"

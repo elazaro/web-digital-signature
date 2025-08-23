@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 public class SignService {
    private final DigitalSigner signer;
 
+   // Question: Fri Aug 22 15:08:44 CST 2025: How the properties is passed
+   // to this constructor method?
    public SignService(SignerProperties props) throws Exception {
       // TODO: Change path "java.p12" to use @ConfigurationProperties, and maybe using hashicorp.
       // Note: Fri Jun 20 14:47:59 CST 2025: Changed for @ConfigurationProperties as spring uses.
